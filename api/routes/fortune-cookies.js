@@ -1,5 +1,5 @@
 const fortuneCookies = require('fortune-cookie')
-const { map, keys, prop } = require('ramda')
+const { map } = require('ramda')
 const uuid = require('uuid')
 
 // create buzzword document

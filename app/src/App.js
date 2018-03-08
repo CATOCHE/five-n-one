@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 import Colors from './pages/colors'
+import StarWars from './pages/starwars'
 
 const Menu = props => {
   return (
@@ -34,6 +35,7 @@ const App = props => {
         <Switch>
           <Route exact path="/" component={Menu} />
           <Route exact path="/colors" component={Colors} />
+          <Route exact path="/starwars" component={StarWars} />
         </Switch>
       </div>
     </BrowserRouter>

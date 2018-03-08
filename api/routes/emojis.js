@@ -5,11 +5,11 @@ const uuid = require('uuid')
 // create color document
 const createEmojis = k => ({
   id: uuid.v4(),
-  name: k,
-  value: prop(k, emojiObj)
+  name: null,
+  value: k
 })
 
-const emojis = map(createEmojis, keys(emojiObj))
+const emojis = map(createEmojis, emojiObj)
 
 module.exports = app => {
   app.get('/emojis', (req, res) => {
