@@ -14,8 +14,7 @@ class Colors extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      colors: [],
-      fetchErrorMsg: null
+      colors: []
     }
   }
 

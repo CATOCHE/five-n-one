@@ -1,5 +1,5 @@
-const buzzWords = require('buzzwords')
-const { map } = require('ramda')
+const buzzwords = require('buzzwords')
+const { map, propOr, append } = require('ramda')
 const uuid = require('uuid')
 
 // create buzzword document
@@ -9,10 +9,19 @@ const createBuzzWords = w => ({
   value: null
 })
 
-const buzzwords = map(createBuzzWords, buzzWords)
+var thewords = map(createBuzzWords, buzzwords)
 
 module.exports = app => {
   app.get('/buzzwords', (req, res) => {
-    res.send(buzzwords)
+    res.send(thewords)
+  })
+  app.post('/buzzwords', (req, res) => {
+    const newBuzzword = propOr(null, 'body', req)
+    if (newBuzzword) {
+      theWords = append(newBuzzword, theWords)
+      res.send({ ok: true })
+    } else {
+      res.status(400).send({ ok: false })
+    }
   })
 }
