@@ -1,5 +1,11 @@
 import fetch from 'isomorphic-fetch'
-import { SET_COLORS, CHG_CURRENT_COLOR, SET_ERROR_MSG } from '../constants'
+import {
+  SET_COLORS,
+  CHG_CURRENT_COLOR,
+  SET_ERROR_MSG,
+  CHG_CURRENT_VIEW_EDIT_COLOR,
+  RESET_NEW_COLOR_FORM
+} from '../constants'
 const url = 'http://localhost:5000/colors'
 
 export const setColors = async (dispatch, getState) => {
@@ -22,6 +28,7 @@ export const addColor = (color, history) => async (dispatch, getState) => {
     )
   if (result) {
     if (result.ok) {
+      dispatch({ type: RESET_NEW_COLOR_FORM })
       dispatch(setColors)
       history.push('/colors')
     }
@@ -30,4 +37,9 @@ export const addColor = (color, history) => async (dispatch, getState) => {
 // Handles binding data entered into the form with redux
 export const chgColor = (field, value) => (dispatch, getState) => {
   dispatch({ type: CHG_CURRENT_COLOR, payload: { [field]: value } })
+}
+
+export const getColor = id => async (dispatch, getState) => {
+  const color = await fetch(`${url}/${id}`).then(res => res.json())
+  dispatch({ type: CHG_CURRENT_VIEW_EDIT_COLOR, payload: color })
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 import Colors from './pages/colors'
 import ColorForm from './pages/colors/form'
+import ShowColor from './pages/colors/show'
 import Cookies from './pages/cookies'
 import StarWars from './pages/starwars'
 import StarwarsForm from './pages/starwars/form'
@@ -43,6 +44,7 @@ const App = props => {
           <Route exact path="/" component={Menu} />
           <Route exact path="/colors" component={Colors} />
           <Route exact path="/colors/new" component={ColorForm} />
+          <Route exact path="/colors/:id" component={ShowColor} />
           <Route exact path="/starwars" component={StarWars} />
           <Route exact path="/starwars/new" component={StarwarsForm} />
           <Route exact path="/fortune-cookies" component={Cookies} />

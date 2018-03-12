@@ -2,7 +2,7 @@
 // property consists of a color name and a color number in hex
 // e.g. "pink": "#ffc0cb"
 const csscolorsObj = require('css-color-names')
-const { map, keys, prop, append } = require('ramda')
+const { map, keys, prop, append, find } = require('ramda')
 // uuid is found in node_modules and contains a function to calculate
 // an Universal Unique ID
 const uuid = require('uuid')
@@ -31,7 +31,14 @@ module.exports = app => {
   })
 
   app.post('/colors', (req, res) => {
-    colors = append(req.body, colors)
+    colors = append(
+      { id: uuid.v4(), name: req.body.name, value: req.body.value },
+      colors
+    )
     res.send({ ok: true })
+  })
+
+  app.get('/colors/:id', (req, res) => {
+    res.send(find(c => c.id === req.params.id, colors))
   })
 }
