@@ -1,5 +1,9 @@
 import fetch from 'isomorphic-fetch'
-import { SET_BUZZWORDS, CHG_CURRENT_BUZZWORD } from '../constants'
+import {
+  SET_BUZZWORDS,
+  CHG_CURRENT_BUZZWORD,
+  SET_ERROR_MSG
+} from '../constants'
 const url = 'http://localhost:5000/buzzwords'
 
 // Action-Creators always end up dispatching an ACTION
@@ -14,16 +18,20 @@ export const addBuzzword = (buzzword, history) => async (
   dispatch,
   getState
 ) => {
+  const headers = { 'Content-Type': 'application/json' }
   const url = 'http://localhost:5000/buzzwords'
   const method = 'POST'
-  const headers = {
-    'Content-Type': 'application/json'
-  }
+
   const body = JSON.stringify(buzzword)
 
-  const result = await fetch(url, { headers, method, body }).then(res =>
-    res.json()
-  )
+  const result = await fetch(url, { headers, method, body })
+    .then(res => res.json())
+    .catch(err =>
+      dispatch({
+        type: SET_ERROR_MSG,
+        payload: 'Error adding buzzword to the database'
+      })
+    )
 
   if (result.ok) {
     dispatch(setBuzzwords)

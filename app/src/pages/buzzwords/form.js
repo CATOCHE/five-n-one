@@ -1,5 +1,5 @@
 import React from 'react'
-import From from '../../components/form'
+import Form from '../../components/form'
 import { connect } from 'react-redux'
 import { addBuzzword, chgBuzzword } from '../../action-creators/buzzwords'
 
@@ -22,6 +22,7 @@ const BuzzwordForm = props => {
         onChange={props.onChange}
         onSubmit={e => props.onSubmit(props.history, props.currentBuzzword)}
         {...props.currentBuzzword}
+        showValueInput={false}
       />
       // Spread Operator that means: // Form.id={props.currentBuzzword.id}
       // Form.name={props.currentBuzzword.name}
