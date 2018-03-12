@@ -24,12 +24,12 @@ const BuzzwordForm = props => {
         {...props.currentBuzzword}
         showValueInput={false}
       />
-      // Spread Operator that means: // Form.id={props.currentBuzzword.id}
-      // Form.name={props.currentBuzzword.name}
-      // Form.value={props.currentBuzzword.value}
     </div>
   )
 }
+// Spread Operator that means: // Form.id={props.currentBuzzword.id}
+// Form.name={props.currentBuzzword.name}
+// Form.value={props.currentBuzzword.value}
 
 function mapStateToProps(state) {
   console.log('BuzzwordForm state', state)
