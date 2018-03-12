@@ -10,7 +10,7 @@ const ColorForm = props => {
       <Form
         cancelUrl="/colors"
         onChange={props.onChange}
-        onSubmit={props.onSubmit(props.history, props.currentColor)}
+        onSubmit={e => props.onSubmit(props.history, props.currentColor)}
         {...props.currentColor}
       />
     </div>
@@ -36,4 +36,5 @@ const mapActionsToProps = dispatch => {
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)
+
 export default connector(ColorForm)
